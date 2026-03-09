@@ -1,4 +1,6 @@
-﻿using DesafioFundamentos.Models;
+﻿using System.Globalization;
+using System.Reflection.Metadata.Ecma335;
+using DesafioFundamentos.Models;
 
 // Coloca o encoding para UTF8 para exibir acentuação
 Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -29,18 +31,41 @@ while (exibirMenu)
     Console.WriteLine("3 - Listar veículos");
     Console.WriteLine("4 - Encerrar");
 
+            
+    string continuar;
+
     switch (Console.ReadLine())
     {
         case "1":
-            es.AdicionarVeiculo();
+            es.AddVeiculo();
+            Console.WriteLine("Deseja adicionar mais um veículo?(Y/N)"); 
+            continuar = Console.ReadLine();
+            while(continuar=="Y")
+            {
+                es.AddVeiculo();
+                Console.WriteLine("Deseja adicionar mais um veículo?(Y/N)");
+                continuar = Console.ReadLine();
+
+            }
             break;
 
         case "2":
             es.RemoverVeiculo();
+            Console.WriteLine("Deseja Remover mais um veículo?(Y/N)"); 
+            continuar = Console.ReadLine();
+            while(continuar=="Y")
+            {
+                es.RemoverVeiculo();
+                Console.WriteLine("Deseja Remover mais um veículo?(Y/N)");
+                continuar = Console.ReadLine();
+
+            }
             break;
 
         case "3":
             es.ListarVeiculos();
+             Console.WriteLine("Pressione uma tecla para voltar ao menu");
+             Console.ReadLine();
             break;
 
         case "4":
@@ -52,8 +77,8 @@ while (exibirMenu)
             break;
     }
 
-    Console.WriteLine("Pressione uma tecla para continuar");
-    Console.ReadLine();
+   // Console.WriteLine("Pressione uma tecla para continuar");
+   // Console.ReadLine();
 }
 
 Console.WriteLine("O programa se encerrou");
